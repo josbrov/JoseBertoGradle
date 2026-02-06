@@ -25,3 +25,7 @@ tasks.test {
 application {
     mainClass.set("josebertogradle.Main")
 }
+
+tasks.register<Exec>("ollamaVersion"){
+    commandLine("bash", "-c","ollama --version");
+}

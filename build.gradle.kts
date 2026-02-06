@@ -29,3 +29,15 @@ application {
 tasks.register<Exec>("ollamaVersion"){
     commandLine("bash", "-c","ollama --version");
 }
+
+tasks.register<Exec>("ollamaPs"){
+    commandLine("bash", "-c","ollama ps");
+}
+
+tasks.register("llmInfo"){
+    dependsOn("ollamaVersion","ollamaPs")
+    doLast{
+        println("DEMO FINALIZADA")
+    }
+
+}

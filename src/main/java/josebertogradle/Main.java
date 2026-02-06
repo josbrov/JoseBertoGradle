@@ -1,3 +1,6 @@
+package josebertogradle;
+
+
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.data.message.SystemMessage;
@@ -11,7 +14,7 @@ import java.util.List;
 
 public class Main {
 
-    static void main() {
+    public static void main(String args[]) {
 
         List <ChatMessage> historial= new ArrayList<>();//creo lista
 

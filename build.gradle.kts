@@ -27,17 +27,54 @@ application {
 }
 
 tasks.register<Exec>("ollamaVersion"){
-    commandLine("bash", "-c","ollama --version");
+    commandLine("bash", "-lc","ollama --version");
 }
 
 tasks.register<Exec>("ollamaPs"){
-    commandLine("bash", "-c","ollama ps");
+    commandLine("bash", "-lc","ollama ps");
 }
 
 tasks.register("llmInfo"){
     dependsOn("ollamaVersion","ollamaPs")
     doLast{
         println("DEMO FINALIZADA")
+        }
     }
 
+//COMPROBAR SI WINDOWS O LINUX
+val OS=System.getProperty("os.name");
+
+tasks.register("verSO"){
+    doLast {
+        println(OS)  }
 }
+
+
+tasks.register<Exec>("ollamaVersionSO"){
+    if (OS.startsWith("L"))
+    commandLine("bash", "-lc","ollama --version");
+    else if(OS.startsWith("W")){
+        commandLine("cmd", "/c","ollama --version");
+    }else{
+        doLast{
+            println("NO TENGO INSTRUCCIONES PARA ESTE S.O")
+        }
+    }
+}
+
+
+tasks.register<Exec>("ollamaPsSO"){
+    if (OS.startsWith("L"))
+        commandLine("bash", "-lc","ollama ps");
+
+    else if(OS.startsWith("W")){
+        commandLine("cmd", "/c","ollama ps");
+    }else{
+        doLast{
+            println("NO TENGO INSTRUCCIONES PARA ESTE S.O")
+        }
+    }
+}
+
+
+
